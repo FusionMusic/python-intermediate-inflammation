@@ -1,6 +1,5 @@
 """Tests for the Patient model."""
 
-
 def test_create_patient():
     from inflammation.models import Patient
 
