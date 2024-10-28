@@ -86,3 +86,13 @@ def test_patient_normalise(test, expected):
        Assumption that test accuracy of two decimal places is sufficient."""
     from inflammation.models import patient_normalise
     npt.assert_almost_equal(patient_normalise(np.array(test)), np.array(expected), decimal=2)
+
+@pytest.mark.parametrize('data, expected_standard_deviation', [
+    ([0, 0, 0], 0.0),
+    ([1.0, 1.0, 1.0], 0),
+    ([0.0, 2.0], 1.0)
+])
+def test_daily_standard_deviation(data, expected_standard_deviation):
+    from inflammation.models import standard_dev
+    result_data = standard_dev(data)['standard deviation']
+    npt.assert_approx_equal(result_data, expected_standard_deviation)
